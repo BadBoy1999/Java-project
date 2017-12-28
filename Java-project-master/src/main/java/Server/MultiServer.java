@@ -1,9 +1,11 @@
 package Server;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,6 +15,9 @@ import java.net.Socket;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import Client.DTO;
 
@@ -43,8 +48,12 @@ class Multserver extends Thread {
 	 public void run() {
 		  try {
 		   DataOutputStream output = new DataOutputStream(client.getOutputStream());
-		   ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
+//		   InputStream input = client.getInputStream();
+//		   byte [] byt = IOUtils.toByteArray(input);
+//		   ByteArrayOutputStream bytes = new  ByteArrayOutputStream(byt);
+//		   DataInputStream input = new DataInputStream(client.getInputStream());
 		   ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+		   ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
 		   final PrintWriter writer = new PrintWriter(output);
 		   String str;
 		   DTO dto;

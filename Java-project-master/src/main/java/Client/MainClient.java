@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -21,19 +22,23 @@ public class MainClient {
 		      socket.connect(new InetSocketAddress(InetAddress.getLocalHost(), 8181));
 //		      DataInputStream input = new DataInputStream(socket.getInputStream());
 //		      BufferedReader reader = new BufferedReader(new InputStreamReader(input, "utf8"));
-		      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+		      System.out.println("This is a test.");
 		      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+		      ClientOutput outputTh = new ClientOutput(oos);
+		      outputTh.start();
+		      if(outputTh.isAlive()){
+		      InputStream input = socket.getInputStream();
+		      ObjectInputStream ois = new ObjectInputStream(input);
 		      boolean flag = true;
 		      ClientInput inputTh = new ClientInput(ois);
 		      inputTh.start();
-		      ClientOutput outputTh = new ClientOutput(oos);
-		      outputTh.start();
 		      while(flag) {
 		    	  Thread.sleep(1000);
 		    	  if(!inputTh.isAlive()&&!outputTh.isAlive()) {
 		    		  flag = false;
 		    	  }
 		      }
+		     }
 		      System.out.println("Connetcion closed");
 		     }
 
