@@ -47,20 +47,21 @@
   <build>
   <plugins>
   <plugin>
+  	<groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-resources-plugin</artifactId>
     <version>2.6</version>
     <executions>
         <execution>
             <configuration>
                 <outputDirectory>
-                       ${basedir}/target/resources
+                       src/target/resources
                 </outputDirectory>
                 <resources>
                     <resource>
-                        <directory>src/props</directory>
+                        <directory>src/main/resources</directory>
                         <filtering>true</filtering>
                         <includes>
-                            <include>my.properties</include>
+                            <include>**/*.properties</include>
                         </includes>
                     </resource>
                 </resources>

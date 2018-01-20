@@ -95,7 +95,7 @@ class Multserver extends Thread {
 //		    stat.execute(quary);
 		     
 		    Properties p = new Properties();
-		    FileInputStream is = new FileInputStream("my.properties");
+		    FileInputStream is = new FileInputStream("src\\main\\resources\\my.properties");
 		    p.load(is);
 		    String driver = p.getProperty("property.db.driver.mysql");
 		    System.out.println(driver);
