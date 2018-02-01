@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <property name ="db.driver.mysql" value ="com.mysql.jdbc.Driver"/>
+    <db.driver.mysql>com.mysql.jdbc.Driver</db.driver.mysql>
     <property name ="db.url.mysql" value ="jdbc:mysql://localhost:3306/mydb?autoReconnect=true&amp;useSSL=false"/>
     <property name ="db.login" value ="root"/>
     <property name ="db.password" value ="root"/>  
@@ -45,30 +45,11 @@
 	</dependency>
   </dependencies>
   <build>
-  <plugins>
-  <plugin>
-  	<groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-resources-plugin</artifactId>
-    <version>2.6</version>
-    <executions>
-        <execution>
-            <configuration>
-                <outputDirectory>
-                       src/target/resources
-                </outputDirectory>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <filtering>true</filtering>
-                        <includes>
-                            <include>**/*.properties</include>
-                        </includes>
-                    </resource>
-                </resources>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-</plugins>
-</build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
 </project>
