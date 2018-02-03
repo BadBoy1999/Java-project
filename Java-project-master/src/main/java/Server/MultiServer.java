@@ -94,11 +94,6 @@ class Multserver extends Thread {
 //		    Statement stat = co.createStatement();
 //		    stat.execute(quary);
 		     
-		    Properties p = new Properties();
-		    FileInputStream is = new FileInputStream("src\\main\\resources\\my.properties");
-		    p.load(is);
-		    String driver = p.getProperty("property.db.driver.mysql");
-		    System.out.println(driver);
 		    Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver loading success!");
             String url = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";

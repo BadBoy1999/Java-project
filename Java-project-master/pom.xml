@@ -15,11 +15,11 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <db.driver.mysql>com.mysql.jdbc.Driver</db.driver.mysql>
-    <property name ="db.url.mysql" value ="jdbc:mysql://localhost:3306/mydb?autoReconnect=true&amp;useSSL=false"/>
-    <property name ="db.login" value ="root"/>
-    <property name ="db.password" value ="root"/>  
-    <property name ="db.driver.sqlite" value ="org.sqlite.JDBC"/>
-    <property name ="db.url.sqlite" value ="jdbc:sqlite:C:\\Program Files\\Maven Project\\Java-project-master\\sqlite-dll-win64-x64-3210000\\client.db"/>
+    <db.url.mysql>jdbc:mysql://localhost:3306/mydb?autoReconnect=true&amp;useSSL=false"/></db.url.mysql>
+    <db.login>root</db.login>
+    <db.password>root</db.password>  
+    <db.driver.sqlite>org.sqlite.JDBC</db.driver.sqlite>
+    <db.url.sqlite>jdbc:sqlite:C:\\Program Files\\Maven Project\\Java-project-master\\sqlite-dll-win64-x64-3210000\\client.db"</db.url.sqlite>
   </properties>
   <dependencies>
     <dependency>
