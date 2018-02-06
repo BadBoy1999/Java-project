@@ -1,15 +1,9 @@
 package Server;
 
-import java.io.BufferedReader;
 import java.sql.*;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -20,8 +14,6 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import Client.DTO;
 
@@ -89,10 +81,11 @@ class Multserver extends Thread {
 //		    String quary = "INSERT INTO user (ip,messege,date) " +"VALUES ('"+ip+"','"+dto.getMessege()+"','"+dto.getDate()+"')";
 //		    Statement stat = co.createStatement();
 //		    stat.execute(quary);
-		    FileInputStream is = new FileInputStream("db.properties");
+		    InputStream in = this.getClass().getClassLoader()
+                    .getResourceAsStream("db.properties");
 		    Properties p = new Properties();
-		    p.load(is);
-		    String driver = p.getProperty("property.db.driver.mysql");
+		    p.load(in);
+		    String driver = p.getProperty("db.driver.mysql");
 		    System.out.println(driver);
 		    Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver loading success!");
