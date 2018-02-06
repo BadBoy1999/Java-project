@@ -52,10 +52,6 @@ class Multserver extends Thread {
 	 public void run() {
 		  try {
 		   DataOutputStream output = new DataOutputStream(client.getOutputStream());
-//		   InputStream input = client.getInputStream();
-//		   byte [] byt = IOUtils.toByteArray(input);
-//		   ByteArrayOutputStream bytes = new  ByteArrayOutputStream(byt);
-//		   DataInputStream input = new DataInputStream(client.getInputStream());
 		   InetAddress str3 = client.getLocalAddress();
 		   String ip = str3.toString();
 		   ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
@@ -93,7 +89,11 @@ class Multserver extends Thread {
 //		    String quary = "INSERT INTO user (ip,messege,date) " +"VALUES ('"+ip+"','"+dto.getMessege()+"','"+dto.getDate()+"')";
 //		    Statement stat = co.createStatement();
 //		    stat.execute(quary);
-		     
+		    FileInputStream is = new FileInputStream("db.properties");
+		    Properties p = new Properties();
+		    p.load(is);
+		    String driver = p.getProperty("property.db.driver.mysql");
+		    System.out.println(driver);
 		    Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver loading success!");
             String url = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
