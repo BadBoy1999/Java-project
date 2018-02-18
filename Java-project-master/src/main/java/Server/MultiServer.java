@@ -76,23 +76,27 @@ class Multserver extends Thread {
 		    System.out.println(dto.getMessege());
 		    System.out.println(dto.getDate());
 		    number++;
-//		    Class.forName("org.sqlite.JDBC");
-//		    Connection co = DriverManager.getConnection("jdbc:sqlite:C:\\Program Files\\Maven Project\\Java-project-master\\sqlite-dll-win64-x64-3210000\\client.db");
-//		    String quary = "INSERT INTO user (ip,messege,date) " +"VALUES ('"+ip+"','"+dto.getMessege()+"','"+dto.getDate()+"')";
-//		    Statement stat = co.createStatement();
-//		    stat.execute(quary);
 		    InputStream in = this.getClass().getClassLoader()
                     .getResourceAsStream("db.properties");
 		    Properties p = new Properties();
 		    p.load(in);
-		    String driver = p.getProperty("db.driver.mysql");
-		    System.out.println(driver);
-		    Class.forName("com.mysql.jdbc.Driver");
+//		    String LiteDriver = p.getProperty("db.driver.sqlite");
+//		    String LiteUrl = p.getProperty("db.url.sqlite");
+//		    Class.forName(LiteDriver);
+//		    Connection co = DriverManager.getConnection("jdbc:sqlite:C:\\Program Files\\Maven Project\\Java-project-master\\sqlite-dll-win64-x64-3210000\\client.db");
+//		    String quary = "INSERT INTO user (ip,messege,date) " +"VALUES ('"+ip+"','"+dto.getMessege()+"','"+dto.getDate()+"')";
+//		    Statement stat = co.createStatement();
+//		    stat.execute(quary);
+		  
+		   
+		    String SqlDriver = p.getProperty("db.driver.mysql");
+		    String SqlUrl = p.getProperty("db.url.mysql");
+		    String SqlLogin = p.getProperty("db.login");
+		    String SqlPassword = p.getProperty("db.password");
+		    Class.forName(SqlDriver);
+		    System.out.println(SqlDriver);
             System.out.println("Driver loading success!");
-            String url = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
-            String name = "root";
-            String password = "root";
-                Connection con = DriverManager.getConnection(url, name, password);
+                Connection con = DriverManager.getConnection(SqlUrl, SqlLogin, SqlPassword);
                 String quar = "INSERT INTO mydb.users (ip,messege,date) " +"VALUES ('"+ip+"','"+dto.getMessege()+"','"+dto.getDate()+"')";
     		    Statement sta = con.createStatement();
     		    sta.execute(quar);
