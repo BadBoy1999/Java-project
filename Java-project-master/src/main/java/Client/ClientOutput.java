@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.util.Date;
-import java.util.Scanner;
 
 public class ClientOutput extends Thread {
 	ObjectOutputStream oos;

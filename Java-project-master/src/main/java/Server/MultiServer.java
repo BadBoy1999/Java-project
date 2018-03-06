@@ -10,10 +10,8 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 import Client.DTO;
 
@@ -48,8 +46,6 @@ class Multserver extends Thread {
 		   String ip = str3.toString();
 		   ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
 		   ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
-		   final PrintWriter writer = new PrintWriter(output);
-		   String str;
 		   DTO dto;
 		   int number = 1;
 //		   Timer timer = new Timer();

@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Login" method ="post">
+<input type="text" required placeholder ="You Login" name="login">
+<input type="password" required placeholder ="You Password"  name="password">
+<input type="submit" value="Login">
+<%
+  String nul = (String)request.getAttribute("null");
+  if(nul!=null){out.println(nul);}
+ %>
+</form>
+</body>
+</html>
