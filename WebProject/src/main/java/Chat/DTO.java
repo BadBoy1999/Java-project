@@ -1,14 +1,16 @@
 package Chat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DTO {
-	ArrayList<String> comments = new ArrayList<String>();
-	  public DTO(ArrayList<String> com2) {
-		      this.comments=com2;
+	 Map<Integer,String> com = new HashMap<Integer,String>();
+	  public DTO(Map<Integer,String> com2) {
+		      this.com=com2;
 		  
 	  }
-	  public ArrayList<String> getComments(){
-		  return comments;
+	  public Map<Integer,String> getComments(){
+		  return com;
 	  }
 }

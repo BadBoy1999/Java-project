@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -35,22 +38,6 @@ public class Chat extends HttpServlet {
 		ResultSet rs = null;
 		String comments = null;
 		String str = request.getParameter("text");
-		StringBuilder jb = new StringBuilder();
-		String line = null;
-		  try {
-		    BufferedReader reader = request.getReader();
-		    while ((line = reader.readLine()) != null)
-		      jb.append(line);
-		  } catch (Exception e) { e.printStackTrace(); }
-        System.out.println(jb.toString());
-//		  try {
-////		    JSONObject jsonObject =  HTTP.toJSONObject(jb.toString());
-////		     comments = jsonObject.getString("text");
-////		    System.out.println(comments);
-//		  } catch (JSONException e) {
-//		    e.printStackTrace();
-//		  }
-		  
 		if(str!=null&&str.trim().length()!=0){ 
 		try {
 			ctx = new InitialContext();
@@ -62,13 +49,19 @@ public class Chat extends HttpServlet {
 		    ps.executeUpdate();
 		    PreparedStatement pst = con.prepareStatement("SELECT * FROM chat ORDER BY id DESC LIMIT 100");
 		    rs = pst.executeQuery();
-		    ArrayList<String> com = new ArrayList<String>();
+		    int counter = 0;
+		    Map<Integer,String> com = new HashMap<Integer,String>();
 		    while(rs.next()) {
-		    	  com.add(rs.getString(2));
+		    	  counter++;
+		    	  com.put(counter,rs.getString(2));
 		      }
-		    DTO dto = new DTO(com);
-			    request.setAttribute("dto",dto);
-			    request.getRequestDispatcher("/Chat.jsp").forward(request, response);
+		    System.out.println(com.size());
+		    response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(new Gson().toJson(com));
+//		    DTO dto = new DTO(com);
+//			    request.setAttribute("dto",dto);
+//			    request.getRequestDispatcher("/Chat.jsp").forward(request, response);
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
